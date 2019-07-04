@@ -6776,4 +6776,13 @@ body {
   background-attachment: fixed;
 }
 
+table{
+	text-align: center;
+	display: table;
+	border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+
+}
+
 /* PINGENDO COMMENT DO NOT REMOVE */

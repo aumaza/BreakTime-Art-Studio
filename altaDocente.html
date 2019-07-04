@@ -1,0 +1,86 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Break Time Art Studio</h3>
+              </div>
+              <div class="panel-body">
+                <p>Alta de Docentes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          
+            <form action="formAltaDocente.php" method="post">
+              <div class="form-group">
+                <label class="control-label" for="nombreApellido">Nombre y Apellido</label>
+                <input id="nombreApellido" placeholder="Enter you name" type="text" name="nombreApellido" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="dni">DNI</label>
+                <input id="dni" placeholder="dni" type="text" name="dni" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="fechaNac">Fecha Nacimiento</label>
+                <input class="form-control" id="fNac" placeholder="Enter your birth" type="date" name="fNac">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="direccion">Dirección</label>
+                <input name="direccion" class="form-control" id="direccion" placeholder="Enter your address" type="text">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="localidad">Dirección</label>
+                <select name="localidad">
+                  <option value="">----Seleccionar----</option>
+                  <option value="CABA">CABA</option>
+                  <option value="Avellaneda">Avellaneda</option>
+                  <option value="Gerli">Gerli</option>
+                  <option value="Lanus">Lanus</option>
+                  <option value="Remedios de Escalada">Remedios de Escalada</option>
+                  <option value="Banfield">Banfield</option>
+                  <option value="Lomas de Zamora">Lomas de Zamora</option>
+                  <option value="Temperley">Temperley</option>
+                  <option value="Adrogue">Adrogue</option>
+                  <option value="San Jose">San Jose</option>
+                  <option value="Burzaco">Burzaco</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="telefono">Teléfono</label>
+                <input name="telefono" class="form-control" id="telefono" placeholder="Enter your tel" type="text">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="movil">Móvil</label>
+                <input name="movil" class="form-control" id="movil" placeholder="Enter your cel" type="text">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="email">e-mail</label>
+                <input name="email" class="form-control" id="email" placeholder="Enter your e-mail" type="email">
+              </div>
+              <button type="submit" class="btn btn-default">Agregar</button>
+              <button type="reset" class="btn btn-default">Limpiar Campos</button>
+            </form>
+            <hr> <a href="cargaDatos.html"><input type="button" value="Volver Carga de Datos" class="btn btn-primary"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>
