@@ -37,12 +37,13 @@
 	
 	if(!$retval)
 	{
-		echo 'Could not create Table: ' . mysql_error(); 	
+		mysql_error(); 	
 	}
 	
 	else
 	 {	
-		echo 'Table create Succesfully\n';
+		echo "Table create Succesfully";
+    echo "<br>";
 	 }
 					
 						  $hora = mysql_real_escape_string($_POST["hora"], $conn);
@@ -62,14 +63,18 @@ $q = mysql_query($sqlInsert,$conn);
 
 if(!$q)
 {
-	echo 'Could not enter data: ' . mysql_error();
+	echo '<div class="alert alert-succes" role="alert">';
+  echo 'Could not enter data: ' . mysql_error();
+  echo "</div>";
 }
 
 else
 {
-echo "Registry Succesfully\n";
-echo "<br><br><br><br>";
-echo '<hr> <a href="cargaDatos.html"><input type="button" value="Volver Carga de Datos" class="btn btn-primary"></a>';
+    echo '<div class="alert alert-success" role="alert">';
+    echo "Registro Guardado Exitosamente!!";
+    echo "</div>";
+    echo "<br><br><br><br>";
+    echo '<hr> <a href="cargaDatos.html"><input type="button" value="Volver Carga de Datos" class="btn btn-primary"></a>';
 }	
 	//cerramos la conexion
 	

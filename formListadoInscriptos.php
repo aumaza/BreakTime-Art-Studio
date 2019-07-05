@@ -6,8 +6,8 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    <title>Listado Inscriptos</title>
     <link rel="stylesheet"  type="text/css" media="screen" href="style.css" />
+    <title>Listado Inscriptos</title>    
     </head>
     <body>
     <div class="container">
@@ -51,12 +51,16 @@
 				
 				if($resultado)
 					{
+						echo '<div class="alert alert-success" role="alert">';
 						echo "Actualización Satisfactoria";
+						echo "</div>";
 					}
 						
 						else 
 						{
+							echo '<div class="alert alert-danger" role="alert">';
 							echo "No se pudo Actualizar";
+							echo "</div>";
 						}	
 						
 			}
@@ -71,12 +75,16 @@
 								
 								if($res)
 									{
-										echo "Registro Eliminado";									
+										echo '<div class="alert alert-success" role="alert">';
+										echo "Registro Eliminado";
+										echo "</div>";	
 									}
 									
 									else
 										{
-											echo "Imposible Borrar!";										
+											echo '<div class="alert alert-danger" role="alert">';
+											echo "Imposible Borrar!";
+											echo "</div>";			
 										}
 								
 							}

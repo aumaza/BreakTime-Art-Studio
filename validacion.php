@@ -9,10 +9,10 @@
     <title>Bienvenido</title>
     <link rel="stylesheet"  type="text/css" media="screen" href="style.css" />
     </head>
-    <body>
+    <body </head><body background="img-breaktime.png" style="background-repeat: no-repeat; background-position: center center"><br><br><br><br><br><br>
     <div class="container">
     <div class="main">
-    <h2>Bienvenido</h2>
+    <h2></h2>
     
     <?php
     
@@ -33,23 +33,26 @@
 	
 		if(!$q) 
 		{	
-			//mysql_error();
 			exit;			
 			
-			/*echo 'Bienvenido'. "<br><br>". $user;	
-			echo '<a href="menuPrincipal.html"><br><br><input value="Ingresar" type="button" ></a><br>';*/	
 		}
 
 			if($user = mysql_fetch_assoc($q))
 			{
-				echo $_POST["usuario"];				
+				echo '<div class="alert alert-success" role="alert">';
+				echo "Bienvenido!  " .$_POST["usuario"];
+				echo "<br>";
+				echo "Presione -Aceptar- para continuar";
+  				echo "</div>";
 				echo '<a href="menuPrincipal.html"><br><br><button type="submit" class="btn btn-default">Aceptar</button></a><br>';		
 			}
 
 			else
 			{
+				echo '<div class="alert alert-danger" role="alert">';
 				echo "Usuario o Contraseña Incorrecta. Reintente Por Favor...";
-				echo '<a href="login.html"><br><br><button type="submit" class="btn btn-default">Aceptar</button></a>';	
+				echo "</div>";
+				echo '<a href="login.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	
 			}
 	

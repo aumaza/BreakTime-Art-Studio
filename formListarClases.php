@@ -50,12 +50,16 @@
 				
 				if($resultado)
 					{
+						echo '<div class="alert alert-success" role="alert">';
 						echo "Actualización Satisfactoria";
+						echo "</div>";
 					}
 						
 						else 
 						{
+							echo '<div class="alert alert-danger" role="alert">';
 							echo "No se pudo Actualizar";
+							echo "</div>";
 						}	
 						
 			}
@@ -70,12 +74,16 @@
 								
 								if($res)
 									{
-										echo "Registro Eliminado";									
+										echo '<div class="alert alert-success" role="alert">';
+										echo "Registro Eliminado";
+										echo "</div>";
 									}
 									
 									else
 										{
-											echo "Imposible Borrar!";										
+											echo '<div class="alert alert-danger" role="alert">';
+											echo "Imposible Borrar!";
+											echo "</div>";
 										}
 								
 							}

@@ -52,7 +52,7 @@
 	
 	else
 	 {	
-		echo 'Table create Succesfully\n';
+		echo 'Table create Succesfully';
 		echo "<br>";
 	 }
 					
@@ -72,7 +72,9 @@ if($conn && strcmp($pass2, $pass1) == 0)
 {
 	mysql_query($sqlInsert);	
 	echo "<br>";
+	echo '<div class="alert alert-success" role="alert">';
 	echo 'Usuario Creado Satisfactoriamente';
+	echo "</div>";
 	
 	echo "<br><br><br><br>";
    echo '<a href="menuPrincipal.html"><br><br><button type="submit" class="btn btn-default">Volver al Menú Principal</button></a><br>';
@@ -82,7 +84,9 @@ if($conn && strcmp($pass2, $pass1) == 0)
 else
 {
 	echo "<br>";
+	echo '<div class="alert alert-warning" role="alert">';
 	echo "Las Contraseñas no Coinciden. Intente Nuevamente!";
+	echo "</div>";
 	echo '<hr> <a href="altaUsuarios.html"><input value="Reintentar" type="button" ></a>';	
 	
 }	
