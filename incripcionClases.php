@@ -31,7 +31,7 @@
             <div class="form-group">
             <label class="control-label" for="Actividad">Actividad</label><br>
             <select name="actividad">
-              <option value="0">----Seleccionar----</option>
+              <option value="descripcion">----Seleccionar----</option>
               
              <?php
 
@@ -52,7 +52,7 @@
                 
                   while ($valores = mysql_fetch_array($res))
                     {
-                        echo '<option value="'.$valores[id].'">'.$valores[descripcion].'</option>';
+                        echo '<option value="'.$valores[descripcion].'">'.$valores[descripcion].'</option>';
                     }
                 }
 
@@ -64,8 +64,8 @@
 
                 <div class="form-group">
                 <label class="control-label" for="Alumno">Alumno</label><br>
-                <select name="alumno">                
-                <option value="0">----Seleccionar----</option>
+                <select name="nombreApellido">                
+                <option value="nombreApellido">----Seleccionar----</option>
                 
                 <?php
 
@@ -82,7 +82,7 @@
 
                   while ($valores = mysql_fetch_array($retval))
                   {
-                    echo '<option value="'.$valores[id].'">'.$valores[nombreApellido].'</option>';
+                    echo '<option value="'.$valores[nombreApellido].'">'.$valores[nombreApellido].'</option>';
                   }
                 
 
@@ -93,7 +93,7 @@
                 <div class="form-group">
                 <label class="control-label" for="Style">Style</label><br>
                 <select name="style">                
-                <option value="0">----Seleccionar----</option>
+                <option value="descripcion">----Seleccionar----</option>
                 
                 <?php
 
@@ -110,7 +110,7 @@
 
                   while ($valores = mysql_fetch_array($retval))
                   {
-                    echo '<option value="'.$valores[id].'">'.$valores[descripcion].'</option>';
+                    echo '<option value="'.$valores[descripcion].'">'.$valores[descripcion].'</option>';
                   }
                 
 
@@ -120,8 +120,8 @@
 
                 <div class="form-group">
                 <label class="control-label" for="Packs">Packs</label><br>
-                <select name="packs">                
-                <option value="0">----Seleccionar----</option>
+                <select name="pack">                
+                <option value="descripcion">----Seleccionar----</option>
                 
                 <?php
 
@@ -138,7 +138,7 @@
 
                   while ($valores = mysql_fetch_array($retval))
                   {
-                    echo '<option value="'.$valores[id].'">'.$valores[descripcion].'</option>';
+                    echo '<option value="'.$valores[descripcion].'">'.$valores[descripcion].'</option>';
                   }
                 
 
