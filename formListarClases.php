@@ -105,7 +105,7 @@
 	
    	$count = 0;	
 	$i=0;
-            echo "<table class='table table-responsive table-striped'>";
+            echo "<table class='table table-responsive-sm table-striped'>";
               echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>

@@ -102,7 +102,7 @@
 	
    	$count = 0;	
 	$i=0;
-            echo "<table class='table table-responsive table-striped'>";
+            echo "<table class='table table-responsive-sm table-striped'>";
               echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>
@@ -156,7 +156,7 @@
 			 echo "<td>".$fila['id']."<input type='hidden' name='guardar' value='$fila[id]'></td>";
 			 echo "<td><input type='text' name='nombreApellido' class='form-control' value=\"$fila[nombreApellido]\"></td>";
 			 echo "<td><input type='text' name='dni' class='form-control' value=\"$fila[dni]\"></td>";
-			 echo "<td><input type='text' name='fNac' class='form-control' value=\"$fila[fechaNacimiento]\"></td>";
+			 echo "<td><input type='date' name='fNac' class='form-control' value=\"$fila[fechaNacimiento]\"></td>";
 			 echo "<td><input type='text' name='direccion' class='form-control' value=\"$fila[direccion]\"></td>";
 			 echo "<td><input type='text' name='localidad' class='form-control' value=\"$fila[localidad]\"></td>";
 			 echo "<td><input type='text' name='telefono' class='form-control' value=\"$fila[telefono]\"></td>";
@@ -179,7 +179,7 @@
 			 echo "<td>".$fila['id']."<input type='hidden' name='borrar' value='$fila[id]'></td>";
 			 echo "<td><input type='text' name='nombreApellido' class='form-control' value=\"$fila[nombreApellido]\"></td>";
 			 echo "<td><input type='text' name='dni' class='form-control' value=\"$fila[dni]\"></td>";
-			 echo "<td><input type='text' name='fNac' class='form-control' value=\"$fila[fechaNacimiento]\"></td>";
+			 echo "<td><input type='date' name='fNac' class='form-control' value=\"$fila[fechaNacimiento]\"></td>";
 			 echo "<td><input type='text' name='direccion' class='form-control' value=\"$fila[direccion]\"></td>";
 			 echo "<td><input type='text' name='localidad' class='form-control' value=\"$fila[localidad]\"></td>";
 			 echo "<td><input type='text' name='telefono' class='form-control' value=\"$fila[telefono]\"></td>";

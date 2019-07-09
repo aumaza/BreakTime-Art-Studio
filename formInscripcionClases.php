@@ -42,7 +42,7 @@
 	
 	if(!$retval)
 	{
-		echo 'Could not create Table: ' . mysql_error(); 	
+		mysql_error(); 	
 	}
 	
 	else

@@ -22,9 +22,12 @@
 		$dbpass = 'slack142';    	
     	$dbase = '/var/lib/mysql/breakTime';
     	$conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
+
+
 		
 		if($conn)
 		{
+			
 						
 			if (isset($_POST["guardar"])) 
 			{
@@ -76,6 +79,9 @@
    
     //hacemos la consulta
 
+	
+
+
    $sql = "SELECT * FROM packs";	
    
    mysql_select_db('breakTime');
@@ -88,7 +94,7 @@
 	
    	$count = 0;	
 	$i=0;
-            echo "<table class='table table-responsive table-striped'>";
+            echo "<table class='table table-responsive-sm table-striped'>";
               echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>

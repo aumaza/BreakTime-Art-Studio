@@ -9,7 +9,7 @@
     <title>Bienvenido</title>
     <link rel="stylesheet"  type="text/css" media="screen" href="style.css" />
     </head>
-    <body </head><body background="img-breaktime.png" style="background-repeat: no-repeat; background-position: center center"><br><br><br><br><br><br>
+    <body background="img-breaktime.png" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center"><br>
     <div class="container">
     <div class="main">
     <h2></h2>

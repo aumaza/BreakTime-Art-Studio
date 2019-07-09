@@ -5,7 +5,7 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
-  </head><body  background="img-calm1.jpg">
+  </head><body  background="img-calm2.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center">
     <div class="section">
       <div class="container">
         <div class="row">
@@ -15,7 +15,7 @@
                 <h3 class="panel-title">Break Time Art Studio</h3>
               </div>
               <div class="panel-body">
-                <p>Menu Principal
+                <p>Pagos
                   <br>
                 </p>
               </div>
@@ -28,17 +28,10 @@
       <div class="container"><hr><br>
         <div class="row">
           <div class="col-md-12">
-            <ul class="list-group" action="formAltaUsuarios.php" method="post">
-              <a href="altaUsuarios.html"><li class="list-group-item" contenteditable="true">Gestión de Usuarios</li></a>
-              <a href="cargaDatos.html"><li class="list-group-item">Carga de Datos
-                <br>
-              </li></a>
-              <a href="listados.html"><li class="list-group-item">Listados / Modificaciones / Bajas</li></a>
-              <li class="list-group-item">Gestion de Datos</li>
-              <a href="pagos.html"><li class="list-group-item">Pagos</li></a>
-              <li class="list-group-item">Facturación</li>
-              <a href="ventas.html"><li class="list-group-item">Ventas</li></a>          
-            </ul>
+            <a href="altaPagoDocentes.php"><li class="list-group-item" contenteditable="true">Pago a Docentes</li></a>
+            <a href="altaPagos.php"><li class="list-group-item" contenteditable="true">Cierre Pago a Docentes</li></a>
+              <a href="altaPagos.php"><li class="list-group-item">Pagos Generales<br></li></a>
+              <a href="formCierrePagos.php"><li class="list-group-item">Cierre Pagos Generales<br></li></a>
           </div>
         </div>
       </div>
@@ -46,8 +39,8 @@
     <div class="section">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-          	<hr> <a href="index.html"><input onclick="session_destroy();" type="button" value="Salir" class="btn btn-danger"></a>
+        <div class="col-md-12">
+        <hr> <a href="menuPrincipal.html"><input type="button" value="Volver al Menú Principal" class="btn btn-primary"></a>
           </div>
         </div>
       </div>

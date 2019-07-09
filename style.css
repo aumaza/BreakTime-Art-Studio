@@ -231,6 +231,8 @@ th {
     page-break-inside: avoid;
   }
   img {
+    background-size: auto;
+    height: auto;
     max-width: 100% !important;
   }
   p,

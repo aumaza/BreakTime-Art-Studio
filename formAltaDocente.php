@@ -27,7 +27,7 @@
 		"id INT AUTO_INCREMENT,".
       "nombreApellido VARCHAR(35) NOT NULL,".
       "dni VARCHAR(9) NOT NULL,".
-      "fechaNacimiento INTEGER NOT NULL,".
+      "fechaNacimiento DATE NOT NULL,".
       "direccion VARCHAR(40) NOT NULL,".
       "localidad VARCHAR(20) NOT NULL,".
       "telefono VARCHAR(10) NOT NULL,".
