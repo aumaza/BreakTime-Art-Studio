@@ -12,7 +12,14 @@
     <body background="img-calm2.jpg" class="img-fluid" alt="Responsive image" >
     <div class="container">
     <div class="main">
-    <h2>Cierre Pagos</h2><hr>
+    <h2>Cierre Pago a Docentes</h2><hr>
+
+    <form action="formCierrePagoDocentes.php" method="post">';
+
+          <div class="form-group">
+          <label class="control-label" for="docentes">Docente</label><br>
+          <select name="nombreApellido" required="required">
+          <option value="nombreApellido">----Seleccionar----</option>';
     
     <?php
   
@@ -25,9 +32,25 @@
 		
 		if($conn)
 		{
-			    
+			              
+             
+              $query = "SELECT * FROM docentes";
+              mysql_select_db('breakTime');
+              $res = mysql_query($query);
 
-           echo '<form action="formCierrePagos.php" method="post">';
+              if($res)
+              {
+                
+                  while ($valores = mysql_fetch_array($res))
+                    {
+                        echo '<option value="'.$valores[nombreApellido].'">'.$valores[nombreApellido].'</option>';
+                    }
+                }
+
+                mysql_close($conn);
+
+               
+                echo '</select></div><hr>';
 
              echo  '<label class="control-label" for="cierre">Cierre *</label><br>
                    <select name="cierre" required="required">
@@ -79,23 +102,24 @@
               echo '</form>';
              // echo '<input type="button" type="submit" name="guardar" class="btn btn-warning">Guardar</button>';
               
-        if (isset($_POST["guardar"])) 
+        /*if (isset($_POST["guardar"])) 
                {
       
-            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+            $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"],$conn);
+            $cierre = mysql_real_escape_string($_POST["cierre"],$conn);
             $mes = mysql_real_escape_string($_POST["mes"], $conn);
             $anio = mysql_real_escape_string($_POST["anio"], $conn);
         
                mysql_select_db('breakTime'); 
         
-            $query = "SELECT sum(monto) as total FROM pagos where mes = '$mes' and anio ='$anio'";
-            $total = mysql_query($query);
-            $row = mysql_fetch_array($total);
+            $query = "SELECT sum(monto) as acum1 FROM pagoDocentes where nombreApellido = '$nombreApellido' and mes = '$mes' and anio ='$anio'";
+            $acum1 = mysql_query($query);
+            $row = mysql_fetch_array($acum1);
 
             
             $save = "INSERT INTO pagos (concepto,mes,anio,total)".
                 "VALUES ".
-                "('$cierre','$mes','$anio','$row[total]')";
+                "('$cierre','$mes','$anio','$row[acum1]')";
 
             $result = mysql_query($save);
         
@@ -112,18 +136,19 @@
                                 echo "Registro Guardado Exitosamente!!";
                                 echo "</div><hr>";
                              } 
-                }
+                }*/
                                              
              
 				
-        $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+        $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+        $cierre = mysql_real_escape_string($_POST["cierre"],$conn);
 				$mes = mysql_real_escape_string($_POST["mes"], $conn);
         $anio = mysql_real_escape_string($_POST["anio"], $conn);
 						
    
     //hacemos la consulta
 
-   $sql = "SELECT * FROM pagos where mes = '$mes' and anio ='$anio'";
+   $sql = "SELECT * FROM pagoDocentes where nombreApellido = '$nombreApellido' and  mes = '$mes' and anio ='$anio'";
    	
    
    mysql_select_db('breakTime');
@@ -131,36 +156,28 @@
 	$retval = mysql_query($sql);
 
 	
-	$query = "SELECT sum(monto) as total FROM pagos where mes = '$mes' and anio ='$anio'";
+	$query = "SELECT sum(monto) as total FROM pagoDocentes where nombreApellido = '$nombreApellido' and mes = '$mes' and anio ='$anio'";
  
 	$total = mysql_query($query);
 	$row = mysql_fetch_array($total);
 
-   /*$save = "INSERT INTO pagos (concepto,mes,anio,total)".
-    "VALUES ".
-      "('$cierre','$mes','$anio','$row[total]')";
-
-  mysql_query($save);*/
- 
-	
+   	
 	
 	//mostramos fila x fila
 
 	echo '<br><br>';
 	
    	$count = 0;	
-	$i=0;
+	   $i=0;
             echo "<table class='table table-responsive-sm table-striped'>";
               echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Concepto</th>
+                    <th class='text-nowrap text-center'>Nombre y Apellido</th>
                     <th class='text-nowrap text-center'>Monto</th>
                     <th class='text-nowrap text-center'>Día</th>
                     <th class='text-nowrap text-center'>Mes</th>
                     <th class='text-nowrap text-center'>Año</th>
-                    <th class='text-nowrap text-center'>Observaciones</th>
-                    <th class='text-nowrap text-center'>Total</th>
                     <th>&nbsp;</th>
                     </thead>";
 	
@@ -171,14 +188,12 @@
       // Listado normal
 			 echo "<tr>";		
 			 echo "<td>".$fila['id']."</td>";
-			 echo "<td>".$fila['concepto']."</td>";
+			 echo "<td>".$fila['nombreApellido']."</td>";
 			 echo "<td>".$fila['monto']."</td>";
 			 echo "<td>".$fila['dia']."</td>";
 			 echo "<td>".$fila['mes']."</td>";
 			 echo "<td>".$fila['anio']."</td>";
-			 echo "<td>".$fila['descripcion']."</td>";
-       echo "<td>".$fila['total']."</td>";
-		   echo "<td class='text-nowrap'>";
+			 echo "<td class='text-nowrap'>";
        
 			 echo "</td>";
 			 echo "</tr>";
