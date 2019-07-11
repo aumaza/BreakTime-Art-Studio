@@ -100,9 +100,9 @@
              }
               echo '</select><br><hr>';
 
-              echo '<button type="submit" class="btn btn-success">Buscar</button>';
-              echo '<button type="submit" name="guardarmes" class="btn btn-warning">Guardar Mes</button>';
-              echo '<button type="submit" name="guardaranio" class="btn btn-warning">Guardar Año</button>';
+              echo '<button type="submit" class="btn btn-success btn-sm">Buscar</button>';
+              echo '<button type="submit" name="guardarmes" class="btn btn-warning btn-sm">Guardar Mes</button>';
+              echo '<button type="submit" name="guardaranio" class="btn btn-warning btn-sm">Guardar Año</button>';
                //echo '<input type="submit" class="btn btn-warning" name="guardar" value="Guardar">
               echo '</form>';
              // echo '<input type="button" type="submit" name="guardar" class="btn btn-warning">Guardar</button>';
@@ -211,7 +211,7 @@
 	echo '<br><br>';
 	
    	$count = 0;	
-	$i=0;
+	  $i=0;
             echo "<table class='table table-responsive-sm table-striped'>";
               echo "<thead>
               

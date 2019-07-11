@@ -25,11 +25,12 @@
 		
 		$sql = "CREATE TABLE pagoDocentes(".
 		"id INT AUTO_INCREMENT,".
-      "nombreApellido VARCHAR(30) NOT NULL,".
-      "monto FLOAT(6,2) NOT NULL,".
-      "dia VARCHAR(2) NOT NULL,".
-      "mes VARCHAR(15) NOT NULL,".
-      "anio VARCHAR(4) NOT NULL,".
+      "nombreApellido VARCHAR(30),".
+      "monto FLOAT(10,2),".
+      "dia VARCHAR(2),".
+      "mes VARCHAR(15),".
+      "anio VARCHAR(4),".
+      "total FLOAT(10,2),".
       "PRIMARY KEY (id)); ";
 
 	mysql_select_db('breakTime');
