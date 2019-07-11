@@ -19,14 +19,43 @@
                 <p>Alta de Usuarios
                   <br>
                 </p>
-              </div>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="section">
       <div class="container">
+
+        <!-- pop-up -->
+<hr><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+  AYUDA
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Importante!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Recuerde que debe repetir la contraseña, esta debe tener como máximo 10 dígitos alfanuméricos y al menos una letra en Mayúscula. Si las contraseñas no coinciden, no será generado el usuario.
+        No utilice progresiones numéricas, ejemplo: 1234.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Aceptar</button>
+       </div>
+    </div>
+  </div>
+</div>
+<!-- pop-up -->
+
         <div class="row">
           <div class="col-md-12"><hr>
             <form action="formAltaUsuarios.php" method="post">

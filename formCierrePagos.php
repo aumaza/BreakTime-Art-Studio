@@ -13,6 +13,33 @@
     <div class="container">
     <div class="main">
     <h2>Cierre Pagos</h2><hr>
+
+    <!-- pop-up -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+  AYUDA
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Importante!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Si desea saber lo pagado en un mes determinado, seleccione el Mes y el Año a calcular y presione "Buscar", si desea guardar ese registro repita los pasos y seleccione "Cierre Mes" luego presione "Guardar Mes". Para Año solo debe seleccionar "Cierre Año", el año correspondiente y presionar "Guardar Año".
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Aceptar</button>
+       </div>
+    </div>
+  </div>
+</div><br><hr>
+
+
     
     <?php
   
@@ -38,7 +65,7 @@
 
                     
              echo  '<label class="control-label" for="mes">Mes *</label><br>
-                		<select name="mes" required="required">
+                		<select name="mes">
                   		<option value="">----Seleccionar----</option>
                   		<option value="Enero">Enero</option>
                   		<option value="Febrero">Febrero</option>
@@ -74,12 +101,13 @@
               echo '</select><br><hr>';
 
               echo '<button type="submit" class="btn btn-success">Buscar</button>';
-              echo '<button type="submit" name="guardar" class="btn btn-warning">Guardar</button>';
+              echo '<button type="submit" name="guardarmes" class="btn btn-warning">Guardar Mes</button>';
+              echo '<button type="submit" name="guardaranio" class="btn btn-warning">Guardar Año</button>';
                //echo '<input type="submit" class="btn btn-warning" name="guardar" value="Guardar">
               echo '</form>';
              // echo '<input type="button" type="submit" name="guardar" class="btn btn-warning">Guardar</button>';
               
-        if (isset($_POST["guardar"])) 
+        if (isset($_POST["guardarmes"])) 
                {
       
             $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
@@ -96,6 +124,40 @@
             $save = "INSERT INTO pagos (concepto,mes,anio,total)".
                 "VALUES ".
                 "('$cierre','$mes','$anio','$row[total]')";
+
+            $result = mysql_query($save);
+        
+                     if($result)
+                      {
+                          echo '<div class="alert alert-success" role="alert">';
+                          echo "Registro Guardado Exitosamente!!";
+                          echo "</div><hr>";
+                       }
+            
+                          else 
+                            {
+                                echo '<div class="alert alert-success" role="alert">';
+                                echo "Registro Guardado Exitosamente!!";
+                                echo "</div><hr>";
+                             } 
+                }
+
+                if (isset($_POST["guardaranio"])) 
+               {
+      
+            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+            $anio = mysql_real_escape_string($_POST["anio"], $conn);
+        
+               mysql_select_db('breakTime'); 
+        
+            $query = "SELECT sum(monto) as total FROM pagos where anio ='$anio'";
+            $total = mysql_query($query);
+            $row = mysql_fetch_array($total);
+
+            
+            $save = "INSERT INTO pagos (concepto,anio,total)".
+                "VALUES ".
+                "('$cierre','$anio','$row[total]')";
 
             $result = mysql_query($save);
         
