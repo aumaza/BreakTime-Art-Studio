@@ -31,6 +31,7 @@
       "mes VARCHAR(15),".
       "anio VARCHAR(4),".
       "total FLOAT(10,2),".
+      "concepto VARCHAR(25),".
       "PRIMARY KEY (id)); ";
 
 	mysql_select_db('breakTime');

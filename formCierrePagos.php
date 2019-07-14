@@ -1,3 +1,6 @@
+<?php include "persistenciaCierrePagos.php"; "connection.php"; ?>
+
+
    <html>
     <head>
     <meta charset="utf-8">
@@ -109,72 +112,25 @@
               
         if (isset($_POST["guardarmes"])) 
                {
-      
-            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-            $mes = mysql_real_escape_string($_POST["mes"], $conn);
-            $anio = mysql_real_escape_string($_POST["anio"], $conn);
-        
-               mysql_select_db('breakTime'); 
-        
-            $query = "SELECT sum(monto) as total FROM pagos where mes = '$mes' and anio ='$anio'";
-            $total = mysql_query($query);
-            $row = mysql_fetch_array($total);
 
-            
-            $save = "INSERT INTO pagos (concepto,mes,anio,total)".
-                "VALUES ".
-                "('$cierre','$mes','$anio','$row[total]')";
-
-            $result = mysql_query($save);
+                  //se levantan los datos
+                  $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                      $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                        //se llama a la funcion
+                        guardarMes($cierre,$mes,$anio);
         
-                     if($result)
-                      {
-                          echo '<div class="alert alert-success" role="alert">';
-                          echo "Registro Guardado Exitosamente!!";
-                          echo "</div><hr>";
-                       }
-            
-                          else 
-                            {
-                                echo '<div class="alert alert-success" role="alert">';
-                                echo "Registro Guardado Exitosamente!!";
-                                echo "</div><hr>";
-                             } 
                 }
+
 
                 if (isset($_POST["guardaranio"])) 
                {
-      
-            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-            $anio = mysql_real_escape_string($_POST["anio"], $conn);
-        
-               mysql_select_db('breakTime'); 
-        
-            $query = "SELECT sum(monto) as total FROM pagos where anio ='$anio'";
-            $total = mysql_query($query);
-            $row = mysql_fetch_array($total);
-
-            
-            $save = "INSERT INTO pagos (concepto,anio,total)".
-                "VALUES ".
-                "('$cierre','$anio','$row[total]')";
-
-            $result = mysql_query($save);
-        
-                     if($result)
-                      {
-                          echo '<div class="alert alert-success" role="alert">';
-                          echo "Registro Guardado Exitosamente!!";
-                          echo "</div><hr>";
-                       }
-            
-                          else 
-                            {
-                                echo '<div class="alert alert-success" role="alert">';
-                                echo "Registro Guardado Exitosamente!!";
-                                echo "</div><hr>";
-                             } 
-                }
+                    //se levantan los datos
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                      $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                        //se llama a la funcion
+                        guardarAnio($cierre,$anio);
+               }
                                              
              
 				
@@ -198,14 +154,7 @@
 	$total = mysql_query($query);
 	$row = mysql_fetch_array($total);
 
-   /*$save = "INSERT INTO pagos (concepto,mes,anio,total)".
-    "VALUES ".
-      "('$cierre','$mes','$anio','$row[total]')";
-
-  mysql_query($save);*/
- 
-	
-	
+  	
 	//mostramos fila x fila
 
 	echo '<br><br>';

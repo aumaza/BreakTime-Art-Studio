@@ -1,3 +1,5 @@
+<?php include "persistenciaCierrePagoDocentes.php"; ?>
+
    <html>
     <head>
     <meta charset="utf-8">
@@ -53,7 +55,7 @@
       $dbhost = 'localhost:3036';
       $dbuser = 'root';
       $dbpass = 'slack142';     
-      //$dbase = '/var/lib/mysql/breakTime';
+      $dbase = '/var/lib/mysql/breakTime';
       $dbase = 'breakTime';
       $conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
     
@@ -125,80 +127,32 @@
               echo '</select><br><hr>';
 
               echo '<button type="submit" class="btn btn-success btn-sm">Buscar</button>';
-              echo '<button type="submit" name="guardarmes" class="btn btn-warning btn-sm">Guardar Mes</button>';
-              echo '<button type="submit" name="guardaranio" class="btn btn-warning btn-sm">Guardar Año</button>';
+              echo '<button type="submit" name="guardarDocMes" class="btn btn-warning btn-sm">Guardar Docente Mes</button>';
+              echo '<button type="submit" name="guardarDocAnio" class="btn btn-warning btn-sm">Guardar Docente Año</button>';
               echo '</form>';
              
               
-        if (isset($_POST["guardarmes"])) 
+        if (isset($_POST["guardarDocMes"])) 
                {
 
-            $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-            $mes = mysql_real_escape_string($_POST["mes"], $conn);
-            $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                  $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                      $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                        $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                          guardarDocMesAnio($nombreApellido,$mes,$anio,$cierre);
         
-               mysql_select_db('breakTime'); 
-        
-            $query = "SELECT sum(monto) as total FROM pagoDocentes where nombreApellido = '$nombreApellido' and mes = '$mes' and anio ='$anio'";
-            $total = mysql_query($query);
-            $row = mysql_fetch_array($total);
-
             
-            $save = "INSERT INTO pagoDocentes (nombreApellido,mes,anio,total,concepto)".
-                "VALUES ".
-                "('$nombreApellido','$mes','$anio','$row[total]','$cierre')";
-
-            $result = mysql_query($save);
-        
-                     if($result)
-                      {
-                          echo '<div class="alert alert-success" role="alert">';
-                          echo "Registro Guardado Exitosamente!!";
-                          echo "</div><hr>";
-                       }
-            
-                          else 
-                            {
-                                echo '<div class="alert alert-success" role="alert">';
-                                echo "Registro Guardado Exitosamente!!";
-                                echo "</div><hr>";
-                             } 
                 } 
 
-                else if (isset($_POST["guardaranio"])) 
+                else if (isset($_POST["guardarDocAnio"])) 
                   {
       
-            $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-            $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                      $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+                        $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                          $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                              guardarDocAnio($nombreApellido,$anio,$cierre);
         
-               mysql_select_db('breakTime'); 
-        
-            $query = "SELECT sum(monto) as total FROM pagoDocentes where nombreApellido = '$nombreApellido' and anio ='$anio'";
-            $total = mysql_query($query);
-            $row = mysql_fetch_array($total);
-
-            
-            $save = "INSERT INTO pagoDocentes (nombreApellido,anio,total,concepto)".
-                "VALUES ".
-                "('$nombreApellido','$anio','$row[total]','$cierre')";
-
-            $result = mysql_query($save);
-        
-                     if($result)
-                      {
-                          echo '<div class="alert alert-success" role="alert">';
-                          echo "Registro Guardado Exitosamente!!";
-                          echo "</div><hr>";
-                       }
-            
-                          else 
-                            {
-                                echo '<div class="alert alert-success" role="alert">';
-                                echo "Registro Guardado Exitosamente!!";
-                                echo "</div><hr>";
-                             } 
-                }
+                  }
                                              
              
         

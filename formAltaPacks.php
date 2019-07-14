@@ -16,17 +16,17 @@
     
     <?php
     
-		  $dbhost = 'localhost:3036';
+		  $dbhost = 'localhost:3306';
 		  $dbuser = 'root';
 		  $dbpass = 'slack142';    	
-    	$dbase = '/var/lib/mysql/breakTime';
-    	$conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
+    	  $dbase = '/var/lib/mysql/breakTime';
+    	  $conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
 		
 		
 		$sql = "CREATE TABLE packs(".
-		  "id INT AUTO_INCREMENT,".
-      "descripcion VARCHAR(35) NOT NULL,".
-      "PRIMARY KEY (id)); ";
+		  		"id INT AUTO_INCREMENT,".
+      			"descripcion VARCHAR(35) NOT NULL,".
+      			"PRIMARY KEY (id)); ";
 
 	mysql_select_db('breakTime');
 	$retval = mysql_query($sql, $conn);

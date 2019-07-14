@@ -26,12 +26,12 @@
 		$sql = "CREATE TABLE pagos(".
 		"id INT AUTO_INCREMENT,".
       "concepto VARCHAR(20) NOT NULL,".
-      "monto FLOAT(6,2) NOT NULL,".
+      "monto FLOAT(10,2) NOT NULL,".
       "dia VARCHAR(2) NOT NULL,".
       "mes VARCHAR(15) NOT NULL,".
       "anio VARCHAR(4) NOT NULL,".
       "descripcion VARCHAR(255) NOT NULL,".
-      "total FLOAT(6,2),".
+      "total FLOAT(10,2),".
       "PRIMARY KEY (id)); ";
 
 	mysql_select_db('breakTime');
