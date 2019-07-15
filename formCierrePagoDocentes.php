@@ -149,12 +149,16 @@
              }
               echo '</select><br><hr>';
 
+              echo '<div class="btn-toolbar" role="toolbar">';
+              echo '<div class="btn-group">';
               echo '<button type="submit" name="A" class="btn btn-success btn-sm">Buscar Docente Dia/Mes/Anio</button>';
-              echo '<button type="submit" name="B" class="btn btn-warning btn-sm">Guardar</button><br><hr>';
+              echo '<button type="submit" name="B" class="btn btn-warning btn-sm">Guardar</button></div>';
+              echo '<div class="btn-group">'; 
               echo '<button type="submit" name="C" class="btn btn-success btn-sm">Buscar Docente Mes/Anio</button>';
-              echo '<button type="submit" name="D" class="btn btn-warning btn-sm">Guardar</button><br><hr>';
+              echo '<button type="submit" name="D" class="btn btn-warning btn-sm">Guardar</button></div>';
+              echo '<div class="btn-group">';
               echo '<button type="submit" name="E" class="btn btn-success btn-sm">Buscar Docente Anio</button>';
-              echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar </button><br><hr>';
+              echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar </button></div></div><hr>';
               echo '</form>';
              
         
