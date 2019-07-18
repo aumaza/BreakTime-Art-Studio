@@ -158,13 +158,21 @@
               echo '<button type="submit" name="D" class="btn btn-warning btn-sm">Guardar</button></div>';
               echo '<div class="btn-group">';
               echo '<button type="submit" name="E" class="btn btn-success btn-sm">Buscar Docente Anio</button>';
-              echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar </button></div></div><hr>';
+              echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar </button></div>';
+              echo '<div class="btn-group">';
+              echo '<button type="submit" name="G" class="btn btn-success btn-sm">Buscar Dia/Mes/Anio</button>';
+              echo '<button type="submit" name="H" class="btn btn-warning btn-sm">Guardar</button></div>';
+              echo '<div class="btn-group">';
+              echo '<button type="submit" name="I" class="btn btn-success btn-sm">Buscar Mes/Anio</button>';
+              echo '<button type="submit" name="J" class="btn btn-warning btn-sm">Guardar</button></div>';
+              echo '<div class="btn-group">';
+              echo '<button type="submit" name="K" class="btn btn-success btn-sm">Buscar Anio</button>';
+              echo '<button type="submit" name="L" class="btn btn-warning btn-sm">Guardar</button></div></div><hr>';
               echo '</form>';
              
         
      
-           switch (isset($_POST))
-            {
+           switch (isset($_POST)){
                
                case isset($_POST['A']):
 
@@ -174,6 +182,7 @@
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
                     buscarDocDiaMesAnio($nombreApellido,$dia,$mes,$anio);
                     break;
+
 
                case isset($_POST['B']):
 
@@ -216,8 +225,54 @@
                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
                    guardarDocAnio($nombreApellido,$anio,$cierre);
                    break;
-            }
-       
+
+                case isset($_POST['G']):
+
+                    
+                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
+                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    buscarDiaMesAnio($dia,$mes,$anio);
+                    break;
+
+                case isset($_POST['H']):
+
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
+                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    guardarDiaMesAnio($dia,$mes,$anio,$cierre);
+                    break;
+
+                case isset($_POST['I']):
+
+                    
+                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    buscarMesAnio($mes,$anio);
+                    break;
+
+                case isset($_POST['J']):
+
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    guardarMesAnio($mes,$anio,$cierre);
+                    break;
+
+                case isset($_POST['K']):
+
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    buscarAnio($anio);
+                    break;
+
+                case isset($_POST['L']):
+
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                    guardarAnio($anio,$cierre);
+                    break;
+       }
 
 
   }
