@@ -20,7 +20,7 @@
       $dbhost = 'localhost:3036';
 		$dbuser = 'root';
 		$dbpass = 'slack142';    	
-    	$dbase = '/var/lib/mysql/breakTime';
+    	$dbase = 'breakTime';
     	$conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
 		
 		if($conn)
@@ -145,8 +145,7 @@
 						}
 					
 					
-		 
-		
+		 		
 		if ($edito)
 		 {
 			
