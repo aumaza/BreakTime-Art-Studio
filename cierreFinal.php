@@ -3,15 +3,13 @@
 
 //Busqueda por periodo
 
-function buscarDiaMesAnio($formaPago,$dia,$mes,$anio)
+function buscarDiaMesAnio($cierre,$dia,$mes,$anio)
 {
-    /*select  sum(U.valor)  as totalDiario from (select A.dia, A.mes, A.anio, A.valor valor , A.formaPago from actividades A union select V.dia, V.mes, V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='efectivo' and dia='5' and mes='Julio'and anio='2019'*/
-
-
-        $sql = "SELECT * FROM ingresos";
+    
+        $sql = "SELECT * FROM cierreFinal";
          mysql_select_db('breakTime');
             $retval = mysql_query($sql);
-              $query = "select  sum(U.valor)  as totalDiario from (select A.dia, A.mes, A.anio, A.valor valor , A.formaPago from actividades A union select V.dia, V.mes, V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and dia='$dia' and mes='$mes'and anio='$anio'";
+              $query = "SELECT I.totalDiario - E.totalDiario AS totalDiario FROM ingresos I, egresos E where I.cierre = '$cierre' and I.dia = '$dia' and I.mes = '$mes' and I.anio = '$anio' and  E.cierre = '$cierre' and E.dia = '$dia' and E.mes = '$mes' and E.anio = '$anio'";
                   $total = mysql_query($query);
                     $row = mysql_fetch_array($total);
 
@@ -23,7 +21,6 @@ function buscarDiaMesAnio($formaPago,$dia,$mes,$anio)
                     echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Forma Pago</th>
                     <th class='text-nowrap text-center'>Cierre</th>
                     <th class='text-nowrap text-center'>Día</th>
                     <th class='text-nowrap text-center'>Mes</th>
@@ -40,7 +37,6 @@ function buscarDiaMesAnio($formaPago,$dia,$mes,$anio)
                           // Listado normal
                           echo "<tr>";   
                           echo "<td>".$fila['id']."</td>";
-                          echo "<td>".$fila['formaPago']."</td>";
                           echo "<td>".$fila['cierre']."</td>";
                           echo "<td>".$fila['dia']."</td>";
                           echo "<td>".$fila['mes']."</td>";
@@ -60,19 +56,19 @@ function buscarDiaMesAnio($formaPago,$dia,$mes,$anio)
                         echo "Cantidad de Registros: " .$count;
                         echo "<hr>";
                         echo "La suma Total Diaria es: $" .$row["totalDiario"];
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formCierreFinal.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
 
 }
 
 
-function buscarMesAnio($formaPago,$mes,$anio)
+function buscarMesAnio($cierre,$mes,$anio)
 {
 
-        $sql = "SELECT * FROM ingresos";
+        $sql = "SELECT * FROM cierreFinal";
          mysql_select_db('breakTime');
             $retval = mysql_query($sql);
-              $query = "select  sum(U.valor)  as totalMensual from (select A.mes, A.anio, A.valor valor , A.formaPago from actividades A union select V.mes, V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and mes='$mes'and anio='$anio'";
+              $query = "SELECT I.totalMensual - E.totalMensual AS totalMensual FROM ingresos I, egresos E where I.cierre = '$cierre' and  I.mes = '$mes' and I.anio = '$anio' and  E.cierre = '$cierre' and E.mes = '$mes' and E.anio = '$anio'";
                   $total = mysql_query($query);
                     $row = mysql_fetch_array($total);
 
@@ -84,7 +80,6 @@ function buscarMesAnio($formaPago,$mes,$anio)
                     echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Forma Pago</th>
                     <th class='text-nowrap text-center'>Cierre</th>
                     <th class='text-nowrap text-center'>Día</th>
                     <th class='text-nowrap text-center'>Mes</th>
@@ -101,7 +96,6 @@ function buscarMesAnio($formaPago,$mes,$anio)
                           // Listado normal
                           echo "<tr>";   
                           echo "<td>".$fila['id']."</td>";
-                          echo "<td>".$fila['formaPago']."</td>";
                           echo "<td>".$fila['cierre']."</td>";
                           echo "<td>".$fila['dia']."</td>";
                           echo "<td>".$fila['mes']."</td>";
@@ -121,18 +115,18 @@ function buscarMesAnio($formaPago,$mes,$anio)
                         echo "Cantidad de Registros: " .$count;
                         echo "<hr>";
                         echo "La suma Total Mensual es: $" .$row["totalMensual"];
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formCierreFinal.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
 }
 
 
-function buscarAnio($formaPago,$anio)
+function buscarAnio($cierre,$anio)
 {
 
-        $sql = "SELECT * FROM ingresos";
+        $sql = "SELECT * FROM cierreFinal";
          mysql_select_db('breakTime');
             $retval = mysql_query($sql);
-              $query = "select  sum(U.valor)  as totalAnual from (select A.anio, A.valor valor , A.formaPago from actividades A union select V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and anio='$anio'";
+              $query = "SELECT I.totalAnual - E.totalAnual AS totalAnual FROM ingresos I, egresos E where I.cierre = '$cierre' and I.anio = '$anio' and  E.cierre = '$cierre' and E.anio = '$anio'";
                   $total = mysql_query($query);
                     $row = mysql_fetch_array($total);
 
@@ -144,7 +138,6 @@ function buscarAnio($formaPago,$anio)
                     echo "<thead>
               
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Forma Pago</th>
                     <th class='text-nowrap text-center'>Cierre</th>
                     <th class='text-nowrap text-center'>Día</th>
                     <th class='text-nowrap text-center'>Mes</th>
@@ -161,7 +154,6 @@ function buscarAnio($formaPago,$anio)
                           // Listado normal
                           echo "<tr>";   
                           echo "<td>".$fila['id']."</td>";
-                          echo "<td>".$fila['formaPago']."</td>";
                           echo "<td>".$fila['cierre']."</td>";
                           echo "<td>".$fila['dia']."</td>";
                           echo "<td>".$fila['mes']."</td>";
@@ -181,24 +173,24 @@ function buscarAnio($formaPago,$anio)
                         echo "Cantidad de Registros: " .$count;
                         echo "<hr>";
                         echo "La suma Total Anual es: $" .$row["totalAnual"];
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formCierreFinal.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
 
 }
 
 
-function guardarDiaMesAnio($formaPago,$cierre,$dia,$mes,$anio){
+function guardarDiaMesAnio($cierre,$dia,$mes,$anio){
 
       mysql_select_db('breakTime'); 
         
-            $query = "select  sum(U.valor)  as totalDiario from (select A.dia, A.mes, A.anio, A.valor valor , A.formaPago from actividades A union select V.dia, V.mes, V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and dia='$dia' and mes='$mes'and anio='$anio'";
+            $query = "SELECT I.totalDiario - E.totalDiario AS totalDiario FROM ingresos I, egresos E where I.cierre = '$cierre' and I.dia = '$dia' and I.mes = '$mes' and I.anio = '$anio' and  E.cierre = '$cierre' and E.dia = '$dia' and E.mes = '$mes' and E.anio = '$anio'";
             $total = mysql_query($query);
             $row = mysql_fetch_array($total);
 
             
-            $save = "INSERT INTO ingresos (formaPago,cierre,dia,mes,anio,totalDiario)".
+            $save = "INSERT INTO cierreFinal (cierre,dia,mes,anio,totalDiario)".
                    "VALUES".
-                   "('$formaPago','$cierre','$dia', '$mes','$anio','$row[totalDiario]')";
+                   "('$cierre','$dia', '$mes','$anio','$row[totalDiario]')";
 
             $result = mysql_query($save);
         
@@ -216,23 +208,23 @@ function guardarDiaMesAnio($formaPago,$cierre,$dia,$mes,$anio){
                                 echo "</div><hr>";
                              }
 
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formCierreFinal.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
                          }
 
 
-function guardarMesAnio($formaPago,$cierre,$mes,$anio){
+function guardarMesAnio($cierre,$mes,$anio){
 
       mysql_select_db('breakTime'); 
         
-            $query = "select  sum(U.valor)  as totalMensual from (select A.mes, A.anio, A.valor valor , A.formaPago from actividades A union select V.mes, V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and mes='$mes'and anio='$anio'";
+            $query = "SELECT I.totalMensual - E.totalMensual AS totalMensual FROM ingresos I, egresos E where I.cierre = '$cierre' I.mes = '$mes' and I.anio = '$anio' and  E.cierre = '$cierre' and E.mes = '$mes' and E.anio = '$anio'";
             $total = mysql_query($query);
             $row = mysql_fetch_array($total);
 
             
-            $save = "INSERT INTO ingresos (formaPago,cierre,mes,anio,totalMensual)".
+            $save = "INSERT INTO cierreFinal (cierre,mes,anio,totalMensual)".
                    "VALUES".
-                   "('$formaPago','$cierre','$mes','$anio','$row[totalMensual]')";
+                   "('$cierre','$mes','$anio','$row[totalMensual]')";
 
             $result = mysql_query($save);
         
@@ -250,23 +242,23 @@ function guardarMesAnio($formaPago,$cierre,$mes,$anio){
                                 echo "</div><hr>";
                              }
 
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formEgresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
                          }
 
 
-function guardarAnio($formaPago,$cierre,$anio){
+function guardarAnio($cierre,$anio){
 
       mysql_select_db('breakTime'); 
         
-            $query = "select  sum(U.valor)  as totalAnual from (select A.anio, A.valor valor , A.formaPago from actividades A union select V.anio, V.monto valor, V.formaPago from ventas V) U  where formaPago='$formaPago' and anio='$anio'";
+            $query = "SELECT I.totalAnual - E.totalAnual AS totalAnual FROM ingresos I, egresos E where I.cierre = '$cierre' and I.anio = '$anio' and  E.cierre = '$cierre' and E.anio = '$anio'";
             $total = mysql_query($query);
             $row = mysql_fetch_array($total);
 
             
-            $save = "INSERT INTO ingresos (formaPago,cierre,anio,totalAnual)".
+            $save = "INSERT INTO cierreFinal (cierre,anio,totalAnual)".
                    "VALUES".
-                   "('$formaPago','$cierre','$anio','$row[totalAnual]')";
+                   "($cierre','$anio','$row[totalAnual]')";
 
             $result = mysql_query($save);
         
@@ -284,16 +276,15 @@ function guardarAnio($formaPago,$cierre,$anio){
                                 echo "</div><hr>";
                              }
 
-                        echo '<hr> <a href="formIngresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+                        echo '<hr> <a href="formEgresos.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
                         echo "<br><br>";
                          }
 
 function createTable(){
 
       
-    $sql = "CREATE TABLE ingresos(".
+    $sql = "CREATE TABLE cierreFinal(".
                "id INT AUTO_INCREMENT,".
-               "formaPago VARCHAR(30) NOT NULL,".
                "cierre VARCHAR(30) NOT NULL,".
                "dia VARCHAR(2),".
                "mes VARCHAR(15),".

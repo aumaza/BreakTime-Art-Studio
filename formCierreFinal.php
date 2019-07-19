@@ -1,4 +1,4 @@
-   <?php include "ingresos.php"; ?>
+   <?php include "cierreFinal.php"; ?>
 
    <html>
     <head>
@@ -8,13 +8,13 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    <title>Ingresos</title>
+    <title>Cierre Final</title>
     <link rel="stylesheet"  type="text/css" media="screen" href="style.css" />
     </head>
     <body background="img-calm2.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center">
     <div class="container">
     <div class="main">
-    <h2>Ingresos</h2><hr>
+    <h2>Cierre Final</h2><hr>
     
     <?php
   
@@ -29,27 +29,18 @@
 		{
       createTable();
 
-			echo '<form action="formIngresos.php" method="post">';			
+			echo '<form action="formCierreFinal.php" method="post">';			
 				
             echo  '<label class="control-label" for="cierre">Cierre *</label><br>
                    <select name="cierre" required="required">
                      <option value="">----Seleccionar----</option>
-                     <option value="Cierre Dia">Cierre Dia</option>
+                     <option value="Cierre Mes">Cierre Dia</option>
                      <option value="Cierre Mes">Cierre Mes</option>
                      <option value="Cierre Año">Cierre Año</option>
                      </select><hr>';
 
 
-            echo  '<label class="control-label" for="formaPago">Forma de Pago *</label><br>
-                   <select name="formaPago" required="required">
-                     <option value="">----Seleccionar----</option>
-                     <option value="Efectivo">Efectivo</option>
-                     <option value="Tarjeta Credito">Tarjeta Crédito</option>
-                     <option value="Tarjeta Debido">Tarjeta Débito</option>
-                     </select><hr>';
-
-
-
+           
             // Sets the top option to be the current day. (IE. the option that is chosen by default).
             $currently_day = date('D'); 
             // Day to start available options at
@@ -112,10 +103,10 @@
               echo '<button type="submit" name="A" class="btn btn-success btn-sm">Buscar Dia/Mes/Año</button>';
               echo '<button type="submit" name="B" class="btn btn-warning btn-sm">Guardar</button></div>';
               echo '<div class="btn-group">';
-              echo '<button type="submit" name="C" class="btn btn-success btn-sm">Buscar Mes/Anio</button>';
+              echo '<button type="submit" name="C" class="btn btn-success btn-sm">Buscar Mes/Año</button>';
               echo '<button type="submit" name="D" class="btn btn-warning btn-sm">Guardar</button></div>';
               echo '<div class="btn-group">'; 
-              echo '<button type="submit" name="E" class="btn btn-success btn-sm">Buscar Anio</button>';
+              echo '<button type="submit" name="E" class="btn btn-success btn-sm">Buscar Año</button>';
               echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar</button></div></div><hr>';
               echo '</form>';
               echo '<a href="facturacion.html"><input type="button" value="Volver a Facturación" class="btn btn-primary"></a>';
@@ -128,58 +119,49 @@
 
               case isset($_POST['A']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $dia = mysql_real_escape_string($_POST["dia"], $conn);
                     $mes = mysql_real_escape_string($_POST["mes"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarDiaMesAnio($formaPago,$dia,$mes,$anio);
+                    buscarDiaMesAnio($dia,$mes,$anio);
                     break;
 
               
               case isset($_POST['B']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
                     $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $dia = mysql_real_escape_string($_POST["dia"], $conn);
                     $mes = mysql_real_escape_string($_POST["mes"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarDiaMesAnio($formaPago,$cierre,$dia,$mes,$anio);
+                    guardarDiaMesAnio($cierre,$dia,$mes,$anio);
                     break;
                
                case isset($_POST['C']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $mes = mysql_real_escape_string($_POST["mes"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarMesAnio($formaPago,$mes,$anio);
+                    buscarMesAnio($mes,$anio);
                     break;
 
 
                case isset($_POST['D']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
                     $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $mes = mysql_real_escape_string($_POST["mes"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarMesAnio($formaPago,$cierre,$mes,$anio);
+                    guardarMesAnio($cierre,$mes,$anio);
                     break;
 
                 case isset($_POST['E']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarAnio($formaPago,$anio);
+                    buscarAnio($anio);
                     break;
 
                 case isset($_POST['F']):
 
-                    $formaPago = mysql_real_escape_string($_POST["formaPago"], $conn);
                     $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
                     $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarAnio($formaPago,$cierre,$anio);
+                    guardarAnio($cierre,$anio);
                     break;
                 
        }
