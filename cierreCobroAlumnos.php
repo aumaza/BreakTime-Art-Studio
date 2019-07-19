@@ -1,4 +1,4 @@
-/*<?php include "persistenciaCierreCobroAlumnos.php"; ?>*/
+<?php include "persistenciaCierreCobroAlumnos.php"; ?>
 
    <html>
     <head>

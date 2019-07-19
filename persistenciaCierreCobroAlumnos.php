@@ -687,8 +687,6 @@ function createTable(){
     echo "<br>";
    }
 
-   //mysql_close($conn);
-
 }
 
 
