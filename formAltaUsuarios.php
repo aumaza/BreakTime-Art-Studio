@@ -22,7 +22,18 @@
     	$dbase = '/var/lib/mysql/breakTime';
     	$conn = mysql_connect($dbhost, $dbuser, $dbpass, $dbase);
 		
-				
+		/*if($conn)
+		{
+			echo 'Conection Succesfully...';
+			
+								
+		}
+		
+		else
+		{
+			echo 'Connection Failure...';		
+		}*/
+		
 		$sql = "CREATE TABLE usuarios(".
 		"id INT AUTO_INCREMENT,".
       "nombreApellido VARCHAR(35) NOT NULL,".

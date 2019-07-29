@@ -41,7 +41,12 @@
   </div>
 </div><br><hr>
       
-           
+            <form action="formCierrePagoDocentes.php" method="post">
+            <div class="form-group">
+            <label class="control-label" for="docentes">Docente</label><br>
+            <select name="nombreApellido" required="required">
+              <option value="nombreApellido">----Seleccionar----</option>
+
 
     
     <?php
@@ -56,14 +61,6 @@
     
     if($conn)
     {
-          
-          echo '<form action="formCierrePagoDocentes.php" method="post">
-            <div class="form-group">
-            <label class="control-label" for="docentes">Docente</label><br>
-            <select name="nombreApellido" required="required">
-              <option value="nombreApellido">----Seleccionar----</option>';
-
-
           $query = "SELECT * FROM docentes";
               mysql_select_db('breakTime');
               $res = mysql_query($query);
@@ -88,29 +85,9 @@
              echo  '<label class="control-label" for="cierre">Cierre *</label><br>
                    <select name="cierre" required="required">
                      <option value="">----Seleccionar----</option>
-                     <option value="Cierre Dia">Cierre Día</option>
                      <option value="Cierre Mes">Cierre Mes</option>
                      <option value="Cierre Año">Cierre Año</option>
                      </select><hr>';
-
-                     // Sets the top option to be the current day. (IE. the option that is chosen by default).
-            $currently_day = date('1'); 
-            // Day to start available options at
-            $earliest_day = 31; 
-            // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
-            $latest_day = date('D'); 
-
-            echo '<label class="control-label" for="dia">Día</label><br>';
-            echo '<select name="dia" required="required">';
-            // Loops over each int[day] from current day, back to the $earliest_day [31]
-
-
-           foreach ( range( $latest_day, $earliest_day ) as $i )
-            {
-           // Prints the option with the next day in range.
-              echo '<option value="'.$i.'"'.($i === $currently_selected ? ' selected="selected"' : '').'>'.$i.'</option>';
-             }
-              echo '</select><br><br>';
 
                     
              echo  '<label class="control-label" for="mes">Mes *</label><br>
@@ -149,132 +126,117 @@
              }
               echo '</select><br><hr>';
 
-              echo '<div class="btn-toolbar" role="toolbar">';
-              echo '<div class="btn-group">';
-              echo '<button type="submit" name="A" class="btn btn-success btn-sm">Buscar Docente Dia/Mes/Anio</button>';
-              echo '<button type="submit" name="B" class="btn btn-warning btn-sm">Guardar</button></div>';
-              echo '<div class="btn-group">'; 
-              echo '<button type="submit" name="C" class="btn btn-success btn-sm">Buscar Docente Mes/Anio</button>';
-              echo '<button type="submit" name="D" class="btn btn-warning btn-sm">Guardar</button></div>';
-              echo '<div class="btn-group">';
-              echo '<button type="submit" name="E" class="btn btn-success btn-sm">Buscar Docente Anio</button>';
-              echo '<button type="submit" name="F" class="btn btn-warning btn-sm">Guardar </button></div>';
-              echo '<div class="btn-group">';
-              echo '<button type="submit" name="G" class="btn btn-success btn-sm">Buscar Dia/Mes/Anio</button>';
-              echo '<button type="submit" name="H" class="btn btn-warning btn-sm">Guardar</button></div>';
-              echo '<div class="btn-group">';
-              echo '<button type="submit" name="I" class="btn btn-success btn-sm">Buscar Mes/Anio</button>';
-              echo '<button type="submit" name="J" class="btn btn-warning btn-sm">Guardar</button></div>';
-              echo '<div class="btn-group">';
-              echo '<button type="submit" name="K" class="btn btn-success btn-sm">Buscar Anio</button>';
-              echo '<button type="submit" name="L" class="btn btn-warning btn-sm">Guardar</button></div></div><hr>';
+              echo '<button type="submit" class="btn btn-success btn-sm">Buscar</button>';
+              echo '<button type="submit" name="guardarDocMes" class="btn btn-warning btn-sm">Guardar Docente Mes</button>';
+              echo '<button type="submit" name="guardarDocAnio" class="btn btn-warning btn-sm">Guardar Docente Año</button>';
               echo '</form>';
              
+              
+        if (isset($_POST["guardarDocMes"])) 
+               {
+
+                  $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                      $mes = mysql_real_escape_string($_POST["mes"], $conn);
+                        $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                          guardarDocMesAnio($nombreApellido,$mes,$anio,$cierre);
         
+            
+                } 
+
+                else if (isset($_POST["guardarDocAnio"])) 
+                  {
+      
+                      $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+                        $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+                          $anio = mysql_real_escape_string($_POST["anio"], $conn);
+                              guardarDocAnio($nombreApellido,$anio,$cierre);
+        
+                  }
+                                             
+             
+        
+        $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
+        $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
+        $mes = mysql_real_escape_string($_POST["mes"], $conn);
+        $anio = mysql_real_escape_string($_POST["anio"], $conn);
+
+
+    //hacemos la consulta
+
+
+   $sql = "SELECT * FROM pagoDocentes where nombreApellido = '$nombreApellido' and mes = '$mes' and anio ='$anio'";
+
+   mysql_select_db('breakTime');
+  
+  $retval = mysql_query($sql);
+
+  
+  $query = "SELECT sum(monto) as total FROM pagoDocentes where nombreApellido = '$nombreApellido' and mes = '$mes' and anio ='$anio'";
+ 
+  $total = mysql_query($query);
+  $row = mysql_fetch_array($total);
+
+   /*$save = "INSERT INTO pagos (concepto,mes,anio,total)".
+    "VALUES ".
+      "('$cierre','$mes','$anio','$row[total]')";
+
+  mysql_query($save);*/
+ 
+  
+  
+  //mostramos fila x fila
+
+  echo '<br><br>';
+  
+    $count = 0; 
+    $i=0;
+            echo "<table class='table table-responsive-sm table-striped'>";
+              echo "<thead>
+              
+                    <th class='text-nowrap text-center'>ID</th>
+                    <th class='text-nowrap text-center'>Nombre y Apellido</th>
+                    <th class='text-nowrap text-center'>Monto</th>
+                    <th class='text-nowrap text-center'>Día</th>
+                    <th class='text-nowrap text-center'>Mes</th>
+                    <th class='text-nowrap text-center'>Año</th>
+                    <th class='text-nowrap text-center'>Total</th>
+                    <th class='text-nowrap text-center'>Concepto</th>
+                    <th>&nbsp;</th>
+                    </thead>";
+  
+
+  while($fila = mysql_fetch_array($retval))
+  {
+
+      // Listado normal
+       echo "<tr>";   
+       echo "<td>".$fila['id']."</td>";
+       echo "<td>".$fila['nombreApellido']."</td>";
+       echo "<td>".$fila['monto']."</td>";
+       echo "<td>".$fila['dia']."</td>";
+       echo "<td>".$fila['mes']."</td>";
+       echo "<td>".$fila['anio']."</td>";
+       echo "<td>".$fila['total']."</td>";
+       echo "<td>".$fila['concepto']."</td>";
+       echo "<td class='text-nowrap'>";
+       
+       echo "</td>";
+       echo "</tr>";
+        $i++;
+        $count++;
      
-           switch (isset($_POST)){
-               
-               case isset($_POST['A']):
-
-                    $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarDocDiaMesAnio($nombreApellido,$dia,$mes,$anio);
-                    break;
-
-
-               case isset($_POST['B']):
-
-                    $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarDocDiaMesAnio($nombreApellido,$dia,$mes,$anio,$cierre);
-                    break;
-
-                case isset($_POST['C']):
-
-                    $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarDocMesAnio($nombreApellido,$mes,$anio);
-                    break;
-
-                case isset($_POST['D']):
-
-                    $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarDocMesAnio($nombreApellido,$mes,$anio,$cierre);
-                    break;
-
-
-                case isset($_POST['E']):
-
-                    $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarDocAnio($nombreApellido,$anio);
-                    break;
-
-                case isset($_POST['F']):
-
-                   $nombreApellido = mysql_real_escape_string($_POST["nombreApellido"], $conn);
-                   $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-                   $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                   guardarDocAnio($nombreApellido,$anio,$cierre);
-                   break;
-
-                case isset($_POST['G']):
-
-                    
-                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarDiaMesAnio($dia,$mes,$anio);
-                    break;
-
-                case isset($_POST['H']):
-
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-                    $dia = mysql_real_escape_string($_POST["dia"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarDiaMesAnio($dia,$mes,$anio,$cierre);
-                    break;
-
-                case isset($_POST['I']):
-
-                    
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarMesAnio($mes,$anio);
-                    break;
-
-                case isset($_POST['J']):
-
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-                    $mes = mysql_real_escape_string($_POST["mes"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarMesAnio($mes,$anio,$cierre);
-                    break;
-
-                case isset($_POST['K']):
-
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    buscarAnio($anio);
-                    break;
-
-                case isset($_POST['L']):
-
-                    $cierre = mysql_real_escape_string($_POST["cierre"], $conn);
-                    $anio = mysql_real_escape_string($_POST["anio"], $conn);
-                    guardarAnio($anio,$cierre);
-                    break;
-       }
-
-
+    
+  }
+    
+    
+    echo "</table>";
+      echo "<br><br><hr>";
+      echo "Cantidad de Pagos Realizados: " .$count;
+      echo "<hr>";
+      echo "La suma Total es: $" .$row["total"];
+      echo '<hr> <a href="pagos.html"><input type="button" value="Volver a Pagos" class="btn btn-primary"></a>';
+      echo "<br><br>";
   }
    
   
